@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruanjian.restaurantrear.mapper.DishMapper">
+    <!--查询所有菜品-->
+    <select id="selectAllDishes" resultType="Dish">
+            SELECT * FROM  dish;
+    </select>
+    <select id="selectDishByNumber" resultType="Dish">
+        SELECT * FROM  dish where dish_number= #{number};
+    </select>
+    <delete id="deleteDishByNumber">
+    DELETE FROM dish WHERE dish_number=#{number};
+    </delete>
+    <insert id="insertDish" parameterType="Dish">
+    INSERT into dish(dish_name,discount,price) VALUES(#{dish_name},#{discount},#{price});
+    </insert>
+    <update id="updateDishByNumber" parameterType="Dish">
+    UPDATE dish
+    SET dish_name = #{dish_name},
+    discount = #{discount},
+    price = #{price}
+    WHERE
+        dish_number =#{dish_number}
+    </update>
+</mapper>

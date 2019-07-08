@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruanjian.restaurantrear.mapper.OrderMapper">
+    <select id="selectUndoneOrder" resultType="Order">
+        select * FROM `order` where  status=0;
+    </select>
+    <update id="changeOrderStatusByNumber">
+        UPDATE `order` SET `status`=1 WHERE order_number=#{number};
+    </update>
+    <select id="selectDoneOrder" resultType="Order">
+        select * FROM `order` where  status=1;
+    </select>
+    <select id="selecetOrderByTableNumberAndTime" resultType="Order">
+        SELECT * FROM `order` WHERE table_number=#{tableNumber} and time=#{time};
+    </select>
+    <insert id="insertOrder" parameterType="Order">
+        insert into `order`(table_number,`status`,time,price) VALUES(#{table_number},#{status},#{time},#{price});
+    </insert>
+</mapper>
